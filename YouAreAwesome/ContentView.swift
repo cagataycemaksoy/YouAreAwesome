@@ -8,36 +8,53 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var isAwesome = false
-  private var color: Color {
-    isAwesome ? .orange : Color(red: 0.65, green: 0.1, blue: 0.1)
-  }
-
+  @State private var imageNum = 0
+  @State private var textNum = 0
+  private let phrases = ["You Are Great!", "Great Energy!", "You Are Awesome!", "Such a kind person.", "You Are Fantastic!", "Fabulous! That is you."]
+  
     var body: some View {
         VStack(spacing: 20) {
           Spacer()
-          Image(isAwesome ? "image0" : "image1")
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 25))
-            .shadow(radius: 25)
-            .padding()
-          Text(isAwesome ? "You Are Awesome!" : "You Are Great!")
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundStyle(color)
+          VStack {
+            Image("image\(imageNum)")
+              .resizable()
+              .scaledToFit()
+              .clipShape(RoundedRectangle(cornerRadius: 25))
+              .shadow(radius: 25)
+              .padding()
+            Text(phrases[textNum])
+              .font(.title)
+              .fontWeight(.bold)
+          }
+            
+          Spacer()
           Spacer()
           Button("Press Me!") {
             withAnimation(.easeIn) {
-              isAwesome.toggle()
+              buttonPressed()
             }
           }
-          .tint(color)
+          .tint(.black)
           .buttonStyle(.bordered)
           .font(.title3)
+          .fontWeight(.semibold)
         }
         .padding()
     }
+  
+  private func buttonPressed() {
+    if imageNum == 9 {
+      imageNum = 0
+    } else {
+      imageNum += 1
+    }
+    
+    if textNum == 5 {
+      textNum = 0
+    } else {
+      textNum += 1
+    }
+  }
 }
 
 #Preview {
