@@ -43,17 +43,8 @@ struct ContentView: View {
     }
   
   private func buttonPressed() {
-    if imageNum == 9 {
-      imageNum = 0
-    } else {
-      imageNum += 1
-    }
-    
-    if textNum == 5 {
-      textNum = 0
-    } else {
-      textNum += 1
-    }
+    imageNum = (imageNum + 1) % 10
+    textNum = (textNum + 1) % phrases.count
   }
 }
 
