@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var imageNum = 0
-  @State private var textNum = 0
+  @State private var imageNum = Int.random(in: 0...9)
+  @State private var textNum = Int.random(in: 0...5)
   private let phrases = ["You Are Great!", "Great Energy!", "You Are Awesome!", "Such a kind person.", "You Are Fantastic!", "Fabulous! That is you."]
   
     var body: some View {
@@ -43,9 +43,18 @@ struct ContentView: View {
     }
   
   private func buttonPressed() {
-    imageNum = (imageNum + 1) % 10
-    textNum = (textNum + 1) % phrases.count
+    let oldImage = imageNum
+    let oldText = textNum
+    
+    repeat {
+      imageNum = Int.random(in: 0...9)
+    } while (imageNum == oldImage)
+    
+    repeat {
+      textNum = Int.random(in: 0...5)
+    } while (textNum == oldText)
   }
+  
 }
 
 #Preview {
