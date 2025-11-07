@@ -60,6 +60,7 @@ struct ContentView: View {
           .padding(.horizontal)
         }
         .padding()
+        .preferredColorScheme(.light)
     }
   
   private func buttonPressed() {
