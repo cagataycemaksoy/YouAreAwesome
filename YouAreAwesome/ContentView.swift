@@ -35,6 +35,7 @@ struct ContentView: View {
             
           Spacer()
           Spacer()
+          
           HStack {
             
             Toggle("Sound On: ", isOn: $soundOn)
@@ -45,7 +46,6 @@ struct ContentView: View {
                 }
               }
               
-            
             Spacer()
             Button("Next!") {
               withAnimation(.easeIn) {
@@ -80,6 +80,10 @@ struct ContentView: View {
   }
   
   func playAudio(file: Int) {
+    if audioPlayer != nil && audioPlayer.isPlaying {
+      audioPlayer.stop()
+    }
+    
     guard let soundData = NSDataAsset(name: "sound\(file)") else {
       print("Failed to read the file.")
       return
